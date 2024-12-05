@@ -27,10 +27,14 @@ services:
     environment:
       - discovery.type=single-node
       - ELASTIC_PASSWORD=123456
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
     ports:
       - "9200:9200"
     networks:
       - graduate_network
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
+
 
   rabbitmq:
     image: rabbitmq:3.12.7-management
